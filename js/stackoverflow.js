@@ -6,8 +6,8 @@
         app.factory('loadingMaskSrvc', function () {
             return {
                 toggleAjaxMask: function (val) {
-                    var ele = $('#loadingScreen');
-                    if (ele == null) {
+                    var ele = document.getElementById('loadingScreen');
+                    if (!ele) {
                         var div = document.createElement('div');
                         div.id = "loadingScreen";
                         var html = '<img style="position:absolute;top:40%;left:45%;" alt="loading" src = "img/loading.gif" alt = "Loading" / > ';
@@ -15,7 +15,8 @@
                         var body = document.getElementsByTagName('body');
                         body[0].appendChild(div);
                     }
-                    $(ele).css('display', val ? 'block' : 'none');
+                    ele = document.getElementById('loadingScreen');
+                    ele.style.display = val ? 'block' : 'none';
                     console.log('loading');
                 }
             }
