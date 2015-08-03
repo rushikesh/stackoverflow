@@ -54,7 +54,7 @@
                 $scope.pgTitle = topic.loc;
                 mySrvc.getData(topic).then(function (resp) {
                     $scope.jsonData = resp.data;
-                    $("body").css("background-image", "url('img/" + topic.name + ".png')");
+                    $("body").css("background-image", "url('./img/" + topic.name + ".png')");
                     window.scrollTo(0, 0);
                     loadingMaskSrvc.toggleAjaxMask(false);
                 });
