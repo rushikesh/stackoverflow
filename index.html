@@ -7,84 +7,12 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <style>
-        .question {
-            background-color: rgb(219, 255, 219);
-        }
-        
-        .cstmHeader {
-            background-color: white;
-            margin-bottom: 1em;
-        }
-        
-        .cstmBody {
-            position: relative;
-            top: 7em;
-            padding-top: 2em;
-        }
-        
-        body {
-            background: url("") no-repeat right center fixed;
-        }
-    </style>
+    <link rel="stylesheet" href="css/stackoverflow.css">
     <script src='js/angular.min.js'></script>
     <script src='js/angular-sanitize.min.js'></script>
     <script src='js/jquery-1.11.1.js'></script>
     <script src="js/bootstrap.min.js"></script>
-    <script>
-        var app = angular.module('myApp', ['ngSanitize']);
-        app.config(function ($sceProvider) {
-            // Completely disable SCE.
-            $sceProvider.enabled(false);
-        });
-        app.factory('mySrvc', function ($http) {
-            return {
-                getData: function (topic) {
-                    var promise = $http.get('js/' + topic.loc + '.json', function (data) {
-                        return data;
-                    });
-                    return promise;
-                }
-            }
-        });
-        app.controller('myCtrl', function ($scope, mySrvc) {
-            $scope.topic = [{
-                name: 'Java',
-                loc: 'Java Top 300 By Vote Stackoverflow'
-            }, {
-                name: 'Javascript',
-                loc: 'Javascript Top 300 By Vote Stackoverflow'
-            }, {
-                name: 'AngularJS',
-                loc: 'AngularJS Top 300 By Vote Stackoverflow'
-            }, {
-                name: 'HTML5',
-                loc: 'HTML5 Top 200 By Vote Stackoverflow'
-            }, {
-                name: 'CSS3',
-                loc: 'CSS3 Top 300 By Vote Stackoverflow'
-            }, {
-                name: 'SQL',
-                loc: 'SQL Top 200 By Vote Stackoverflow'
-            }];
-            $scope.$watch('pgTopic', function (topic) {
-                $scope.pgTitle = topic.loc;
-                mySrvc.getData(topic).then(function (resp) {
-                    $scope.jsonData = resp.data;
-                    $("body").css("background-image", "url('img/" + topic.name + ".png')");
-                    window.scrollTo(0, 0);
-                });
-            });
-            $scope.jsonData = [];
-            $scope.openPopUp = function (data) {
-                $scope.title = data.t;
-                $scope.link = data.l;
-                $scope.question = data.q;
-                $scope.answer = data.a;
-                $('#myModal').modal('show');
-            };
-        });
-    </script>
+    <script src="js/stackoverflow.js"></script>
 </head>
 
 <body class='container' ng-controller="myCtrl">

@@ -1,0 +1,30 @@
+.question {
+    background-color: rgb(219, 255, 219);
+}
+
+.cstmHeader {
+    background-color: white;
+    margin-bottom: 1em;
+}
+
+.cstmBody {
+    position: relative;
+    top: 7em;
+    padding-top: 2em;
+}
+
+body {
+    background: url("") no-repeat right center fixed;
+}
+
+#loadingScreen {
+    position: "fixed";
+    top: "0";
+    left: "0";
+    right: "0";
+    bottom: "0";
+    z-index: "10000";
+    background-color: "black";
+    opacity: "0.9";
+    display: 'none';
+}
