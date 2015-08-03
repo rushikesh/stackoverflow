@@ -23,8 +23,8 @@
         app.factory('mySrvc', function ($http, loadingMaskSrvc) {
             return {
                 getData: function (topic) {
+                    loadingMaskSrvc.toggleAjaxMask(true);
                     var promise = $http.get('js/' + topic.loc + '.json', function (data) {
-                        loadingMaskSrvc.toggleAjaxMask(true);
                         return data;
                     });
                     return promise;
