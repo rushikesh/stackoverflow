@@ -15,7 +15,7 @@
                         var body = document.getElementsByTagName('body');
                         body[0].appendChild(ele);
                     }
-                    ele.style.display = val ? 'block' : 'none';
+                    ele.style.display = val ? 'block !important' : 'none !important';
                 }
             }
         });

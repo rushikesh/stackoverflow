@@ -26,5 +26,5 @@ body {
     z-index: 10000;
     background-color: black;
     opacity: 0.9;
-    display: 'none';
+    display: none;
 }
