@@ -60,9 +60,6 @@
             }, {
                 name: 'NoSql',
                 loc: 'NoSql Top 300 By Vote Stackoverflow'
-            }, {
-                name: 'Algorithms',
-                loc: 'NoSql Top 300 By Vote Stackoverflow'
             }];
             $scope.$watch('pgTopic', function (topic) {
                 $scope.pgTitle = topic.loc;
