@@ -6,16 +6,17 @@
         app.factory('loadingMaskSrvc', function () {
             return {
                 toggleAjaxMask: function (val) {
-                    var ele = document.getElementById('loadingScreen');
+                    var ele = $('#loadingScreen');
                     if (ele == null) {
-                        var ele = document.createElement('div');
-                        ele.id = "loadingScreen";
+                        var div = document.createElement('div');
+                        div.id = "loadingScreen";
                         var html = '<img style="position:absolute;top:40%;left:45%;" alt="loading" src = "img/loading.gif" alt = "Loading" / > ';
-                        ele.innerHTML = html;
+                        div.innerHTML = html;
                         var body = document.getElementsByTagName('body');
-                        body[0].appendChild(ele);
+                        body[0].appendChild(div);
                     }
-                    ele.style.display = val ? 'block !important' : 'none !important';
+                    $(ele).css('display', val ? 'block' : 'none');
+                    console.log('loading');
                 }
             }
         });
