@@ -34,6 +34,12 @@
         });
         app.controller('myCtrl', function ($scope, mySrvc, loadingMaskSrvc) {
             $scope.topic = [{
+                name: 'Java-8',
+                loc: 'Java-8 Top 300 By Vote Stackoverflow'
+            }, {
+                name: 'ECMASCRIPT-6',
+                loc: 'ECMASCRIPT-6 Top 300 By Vote Stackoverflow'
+            }, {
                 name: 'Java',
                 loc: 'Java Top 300 By Vote Stackoverflow'
             }, {
@@ -44,16 +50,23 @@
                 loc: 'AngularJS Top 300 By Vote Stackoverflow'
             }, {
                 name: 'HTML5',
-                loc: 'HTML5 Top 200 By Vote Stackoverflow'
+                loc: 'HTML5 Top 300 By Vote Stackoverflow'
             }, {
                 name: 'CSS3',
                 loc: 'CSS3 Top 300 By Vote Stackoverflow'
             }, {
                 name: 'SQL',
-                loc: 'SQL Top 200 By Vote Stackoverflow'
+                loc: 'SQL Top 300 By Vote Stackoverflow'
+            }, {
+                name: 'NoSql',
+                loc: 'NoSql Top 300 By Vote Stackoverflow'
+            }, {
+                name: 'Algorithms',
+                loc: 'NoSql Top 300 By Vote Stackoverflow'
             }];
             $scope.$watch('pgTopic', function (topic) {
                 $scope.pgTitle = topic.loc;
+                $scope.search = '';
                 mySrvc.getData(topic).then(function (resp) {
                     $scope.jsonData = resp.data;
                     $("body").css("background-image", "url('./img/" + topic.name + ".png')");
