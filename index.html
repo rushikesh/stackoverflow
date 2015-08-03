@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Java, Javascript, HTML5, CSS3, SQl, AngularJS Stackoverflow top Q & A By Vote</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <style>
+        .question {
+            background-color: rgb(219, 255, 219);
+        }
+        
+        .cstmHeader {
+            background-color: white;
+            margin-bottom: 1em;
+        }
+        
+        .cstmBody {
+            position: relative;
+            top: 7em;
+            padding-top: 2em;
+        }
+        
+        body {
+            background: url("") no-repeat right center fixed;
+        }
+    </style>
+    <script src='js/angular.min.js'></script>
+    <script src='js/angular-sanitize.min.js'></script>
+    <script src='js/jquery-1.11.1.js'></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        var app = angular.module('myApp', ['ngSanitize']);
+        app.config(function ($sceProvider) {
+            // Completely disable SCE.
+            $sceProvider.enabled(false);
+        });
+        app.factory('mySrvc', function ($http) {
+            return {
+                getData: function (topic) {
+                    var promise = $http.get('js/' + topic.loc + '.json', function (data) {
+                        return data;
+                    });
+                    return promise;
+                }
+            }
+        });
+        app.controller('myCtrl', function ($scope, mySrvc) {
+            $scope.topic = [{
+                name: 'Java',
+                loc: 'Java Top 300 By Vote Stackoverflow'
+            }, {
+                name: 'Javascript',
+                loc: 'Javascript Top 300 By Vote Stackoverflow'
+            }, {
+                name: 'AngularJS',
+                loc: 'AngularJS Top 300 By Vote Stackoverflow'
+            }, {
+                name: 'HTML5',
+                loc: 'HTML5 Top 200 By Vote Stackoverflow'
+            }, {
+                name: 'CSS3',
+                loc: 'CSS3 Top 300 By Vote Stackoverflow'
+            }, {
+                name: 'SQL',
+                loc: 'SQL Top 200 By Vote Stackoverflow'
+            }];
+            $scope.$watch('pgTopic', function (topic) {
+                $scope.pgTitle = topic.loc;
+                mySrvc.getData(topic).then(function (resp) {
+                    $scope.jsonData = resp.data;
+                    $("body").css("background-image", "url('img/" + topic.name + ".png')");
+                    window.scrollTo(0, 0);
+                });
+            });
+            $scope.jsonData = [];
+            $scope.openPopUp = function (data) {
+                $scope.title = data.t;
+                $scope.link = data.l;
+                $scope.question = data.q;
+                $scope.answer = data.a;
+                $('#myModal').modal('show');
+            };
+        });
+    </script>
+</head>
+
+<body class='container' ng-controller="myCtrl">
+    <nav class="navbar navbar-fixed-top">
+        <div class="container cstmHeader">
+            <h1 class='text-center'>{{pgTitle}}</h1>
+            <h6 class='text-center'>As of <em>Thu Jul 31 2015 03:30:02 GMT-0500</em></h6>
+            <div class='text-center'><b>Select Topic:</b>
+                <select ng-init="pgTopic = topic[0]" ng-model="pgTopic" ng-options="topic.name for topic in topic"></select>
+            </div>
+            <div class='text-center'>
+                <input size='120' type='text' ng-model='search' placeholder='enter text to search' />
+            </div>
+        </div>
+    </nav>
+    <br/>
+    <div class="container cstmBody">
+        <ol>
+            <li ng-repeat="data in jsonData | filter : search"><a ng-click='openPopUp(data)' ng-href='#'>{{data.t}}</a>
+            </li>
+        </ol>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel"><a target="_blank" ng-href="{{link}}" ng-bind-html="title"></a></h4>
+                    <h6>Click above link to go to stackoverflow thread</h6>
+                </div>
+                <div class="modal-body">
+                    <h3 class='question'>Question:</h3>
+                    <div class='question' ng-bind-html="question"></div>
+                    <h3 class='answer'>Answer:</h3>
+                    <div class='answer' ng-bind-html="answer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-11824443-3', 'rushikesh.github.io');
+        ga('send', 'pageview');
+    </script>
+
+</body>
+
+</html>
