@@ -18,7 +18,6 @@ app.factory('loadingMaskSrvc', function () {
             }
             ele = document.getElementById('loadingScreen');
             ele.style.display = val ? 'block' : 'none';
-            console.log('loading');
         }
     }
 });
@@ -89,8 +88,6 @@ app.controller('myCtrl', function ($scope, mySrvc, loadingMaskSrvc) {
 
 $(document).ready(function () {
     $("#myModal").on('hidden.bs.modal', function () {
-        console.log('djkfbfweiofhweiofjiofjweio');
-        console.dir(mevent);
         window.scrollTo(mevent.pageX, mevent.pageY - 800);
     });
 });
