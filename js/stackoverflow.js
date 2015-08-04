@@ -76,7 +76,6 @@ app.controller('myCtrl', function ($scope, mySrvc, loadingMaskSrvc) {
     });
     $scope.jsonData = [];
     $scope.openPopUp = function (event, data) {
-        console.dir(event);
         mevent = event;
         $scope.title = data.t;
         $scope.link = data.l;
