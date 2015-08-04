@@ -31,7 +31,7 @@
     <br/>
     <div class="container cstmBody">
         <ol>
-            <li ng-repeat="data in jsonData | filter : search"><a ng-click='openPopUp(data)' ng-href='#'>{{data.t}}</a>
+            <li ng-repeat="data in jsonData | filter : search"><a ng-click='openPopUp($event,data)' ng-href='#'>{{data.t}}</a>
             </li>
         </ol>
     </div>
