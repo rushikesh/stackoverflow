@@ -63,6 +63,15 @@ app.controller('myCtrl', function ($scope, mySrvc, loadingMaskSrvc) {
             }, {
         name: 'Algorithms',
         loc: 'Algorithms Top 300 By Vote Stackoverflow'
+            }, {
+        name: 'Architecture',
+        loc: 'Architecture Top 300 By Vote Stackoverflow'
+            }, {
+        name: 'Regex',
+        loc: 'Regex Top 300 By Vote Stackoverflow'
+            }, {
+        name: 'Bash',
+        loc: 'Bash Top 300 By Vote Stackoverflow'
             }];
     $scope.$watch('pgTopic', function (topic) {
         $scope.pgTitle = topic.loc;
