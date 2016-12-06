@@ -42,6 +42,9 @@ app.controller('myCtrl', function ($scope, mySrvc, loadingMaskSrvc) {
             }, {
         name: 'Java',
         loc: 'Java Top 300 By Vote Stackoverflow'
+            },{
+        name: 'Spring',
+        loc: 'Spring Top 300 By Vote Stackoverflow'
             }, {
         name: 'Javascript',
         loc: 'Javascript Top 300 By Vote Stackoverflow'
