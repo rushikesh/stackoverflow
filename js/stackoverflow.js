@@ -45,6 +45,9 @@ app.controller('myCtrl', function ($scope, mySrvc, loadingMaskSrvc) {
             },{
         name: 'Spring',
         loc: 'Spring Top 300 By Vote Stackoverflow'
+            },{
+        name: 'Hibernate',
+        loc: 'Hinernate Top 300 By Vote Stackoverflow'
             }, {
         name: 'Javascript',
         loc: 'Javascript Top 300 By Vote Stackoverflow'
